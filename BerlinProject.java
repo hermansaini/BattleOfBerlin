@@ -29,24 +29,47 @@ public class BerlinProject extends JFrame{
 
           test = new JPanel(cards);
 
-          MainPanel mainP = new MainPanel(); //making instances of the 3 other panels in the game
-          mainP.run();
+          MainPanel mainPanel = new MainPanel(); //making instances of the 3 other panels in the game
+          mainPanel.run();
 
-          test.add(mainP, "Main");
+          // Airstirkes asPanel = new Airstirkes();
+          //
+          // Life lPanel = new Life();
+          //
+          // GroundInvasion giPanel = new GroundInvasion();
+          //
+          // Aftermath amPanel = new Aftermath();
+
+           test.add(mainPanel, "Main");
+          // test.add(asPanel, "Airstikes");
+          // test.add(lPanel, "Life During the Battle");
+          // test.add(giPanel, "Ground Invasion");
+          // test.add(amPanel, "Aftermath");
 
           frame.add(test);
 
           frame.setResizable(false);
           frame.setVisible(true);
+
      }
 
      class MainPanel extends JPanel implements ActionListener{
           private Image image;
           private String imageName;
 
+          JButton giButton;
+          JButton amButton;
+          JButton asButton;
+          JButton lButton;
+
           public MainPanel(){
-               //setLayout(new GridLayout(1, 1)); //setting layout to a grid layout
-               imageName = "BattleOfBerlin.jpg"; //background of the panel
+               imageName = "BattleOfBerlin.jpg";
+
+               JLabel instructions = new JLabel("Click on one of the buttons below to start.", JLabel.CENTER);
+               instructions.setForeground(Color.BLACK);
+               Font instructionsFont = new Font("Serif", Font.PLAIN, 55);
+               instructions.setFont(instructionsFont);
+               add(instructions);
           }
 
           public void run()
@@ -79,4 +102,22 @@ public class BerlinProject extends JFrame{
           }
      }
 
+     // class Airstikes extends JPanel implements ActionListener{
+     //
+     // }
+     //
+     // class Aftermath extends JPanel implements ActionListener{
+     //
+     //
+     // }
+     //
+     // class GroundInvasion extends JPanel implements ActionListener{
+     //
+     //
+     // }
+     //
+     // class Life extends JPanel implements ActionListener{
+     //
+     //
+     // }
 }
