@@ -8,6 +8,8 @@ import java.awt.event.*;
 public class BerlinProject extends JFrame{
 
      JFrame frame; //variables
+     JPanel test;
+     CardLayout cards;
 
      public BerlinProject(){
           frame = new JFrame("BerlinProject");
@@ -20,13 +22,20 @@ public class BerlinProject extends JFrame{
      }
 
      public void run(){
+          frame.setSize(1200, 750);
+          cards = new CardLayout();
+
           frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+          test = new JPanel(cards);
 
           MainPanel mainP = new MainPanel(); //making instances of the 3 other panels in the game
           mainP.run();
-          frame.add(mainP, "Main");
 
-          frame.setSize(1200, 750);
+          test.add(mainP, "Main");
+
+          frame.add(test);
+
           frame.setResizable(false);
           frame.setVisible(true);
      }
@@ -36,25 +45,27 @@ public class BerlinProject extends JFrame{
           private String imageName;
 
           public MainPanel(){
+               //setLayout(new GridLayout(1, 1)); //setting layout to a grid layout
                imageName = "BattleOfBerlin.jpg"; //background of the panel
           }
 
           public void run()
           {
-            getMyImage();
+               getMyImage();
+               repaint();
           }
 
           public void getMyImage()
           {
-            try
-            { //try catch block to load the image, catch exceptions
-              image = ImageIO.read(new File(imageName));
-            }
-            catch(IOException e)
-            {
-              System.err.println("\n\n" + imageName + "can't be found.");
-              e.printStackTrace();
-            }
+               try
+               { //try catch block to load the image, catch exceptions
+                    image = ImageIO.read(new File(imageName));
+               }
+               catch(IOException e)
+               {
+                    System.err.println("\n\n" + imageName + "can't be found.");
+                    e.printStackTrace();
+               }
           }
 
           public void actionPerformed(ActionEvent e){
@@ -64,7 +75,7 @@ public class BerlinProject extends JFrame{
 
           public void paintComponent(Graphics g){
                super.paintComponent(g); //drawing the image
-               g.drawImage(image, 300, 0, 150, 150, this);
+               g.drawImage(image, 0, 0, this);
           }
      }
 
